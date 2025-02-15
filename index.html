@@ -9,26 +9,28 @@
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f9e1e1;
-            padding: 50px;
+            padding: 20px;
+            margin: 0;
         }
         h1 {
             color: #ff6f61;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
         .gif {
-            margin: 20px 0;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 20px;
+        }
+        .gif img {
+            width: 100%;
+            height: auto;
         }
         .buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
-        }
-        .gif {
-            width: 300px;
-            height: 300px;
-            margin: auto;
-        }
-        .gif img {
-            width: 100%;
+            flex-wrap: wrap;
         }
         .love-button {
             background-color: #ff6f61;
@@ -104,13 +106,25 @@
         const loveGif = document.getElementById('loveGif');
         const heading = document.getElementById('heading');
 
-        noButton.addEventListener('mouseover', () => {
+        // Function to move the "No" button randomly
+        const moveNoButton = () => {
             const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
             const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
             noButton.style.left = `${x}px`;
             noButton.style.top = `${y}px`;
+        };
+
+        // Move "No" button on hover (desktop) or touch (mobile)
+        noButton.addEventListener('mouseover', moveNoButton);
+        noButton.addEventListener('touchstart', moveNoButton);
+
+        // Prevent "No" button from being clicked
+        noButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveNoButton();
         });
 
+        // "Yes" button functionality
         yesButton.addEventListener('click', () => {
             // Show loading animation
             loading.classList.remove('hidden');
