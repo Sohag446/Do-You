@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love Me?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9e1e1;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        .gif {
+            margin: 20px 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .gif {
+            width: 300px;
+            height: 300px;
+            margin: auto;
+        }
+        .gif img {
+            width: 100%;
+        }
+        .love-button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .love-button:hover {
+            transform: scale(1.1);
+        }
+        .no-button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+        }
+        .hidden {
+            display: none;
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .heart {
+            font-size: 40px;
+            color: #ff6f61;
+            animation: rotate 2s linear infinite;
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .congrats {
+            font-size: 24px;
+            color: #ff6f61;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">Do you love me?</h1>
+    <div class="gif">
+        <img id="loveGif" src="image_processing20210910-11080-3kqqxb.gif" alt="Love GIF">
+    </div>
+    <div class="buttons">
+        <button class="love-button" id="yesButton">Yes</button>
+        <button class="no-button" id="noButton">No</button>
+    </div>
+    <div class="loading hidden" id="loading">
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+    </div>
+    <div class="congrats hidden" id="congrats">Sweety, I Too Love You Meri Jaan ❤️</div>
+
+    <script>
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const loading = document.getElementById('loading');
+        const congrats = document.getElementById('congrats');
+        const loveGif = document.getElementById('loveGif');
+        const heading = document.getElementById('heading');
+
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        yesButton.addEventListener('click', () => {
+            // Show loading animation
+            loading.classList.remove('hidden');
+            setTimeout(() => {
+                // Hide loading animation
+                loading.classList.add('hidden');
+                // Change the heading text
+                heading.innerText = "Yes Sohag, I love you, do you love me?";
+                // Change the GIF
+                loveGif.src = "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif"; // New GIF
+                // Show the message
+                congrats.classList.remove('hidden');
+                // Hide the buttons
+                yesButton.classList.add('hidden');
+                noButton.classList.add('hidden');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
